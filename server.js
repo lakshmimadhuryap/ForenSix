@@ -1,13 +1,13 @@
 require("dotenv").config();
 const express = require("express");
-const groq.com = require("groq.com");
+const mongoose = require("mongoose");
 const cors = require("cors");
 const crypto = require("crypto");
 const OpenAI = require("openai");
 const app = express();
 // 🔐 OpenAI setup (Configured to use Local Ollama)
 const openai = new OpenAI({
-  baseURL: "http://api.groq.com/openai/v1", // Using 127.0.0.1 fixes Node.js localhost bug
+  baseURL: "https://api.groq.com/openai/v1", // Using 127.0.0.1 fixes Node.js localhost bug
   apiKey: process.env.OPENAI_API_KEY, // The key isn't used by Ollama, but the SDK requires a string
 });
 app.use(express.json());
@@ -20,13 +20,13 @@ app.use((req, res, next) => {
 /* =========================
    CONNECT TO MONGODB
 ========================= */
-groq.com.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log("✅ MongoDB Connected"))
   .catch(err => console.log("❌ MongoDB Error:", err));
 /* =========================
    CREATE SCHEMA
 ========================= */
-const ReportSchema = new groq.com.Schema({
+const ReportSchema = new mongoose.Schema({
   fileName: String,
   reportContent: String,
   hashValue: String, // Output hash
@@ -35,7 +35,7 @@ const ReportSchema = new groq.com.Schema({
   riskScore: Number,
   createdAt: { type: Date, default: Date.now }
 });
-const Report = groq.com.model("Report", ReportSchema);
+const Report = mongoose.model("Report", ReportSchema);
 /* =========================
    SAVE REPORT API
 ========================= */
@@ -65,7 +65,7 @@ app.post("/save-report", async (req, res) => {
 
     try {
       const response = await openai.chat.completions.create({
-        model: "llama3:latest", // Switched to 1B model for extreme speed
+        model: "llama-3.1-8b-instant", // Switched to 1B model for extreme speed
         messages: [
           {
             role: "system",
@@ -215,6 +215,8 @@ app.get("/reports", async (req, res) => {
 /* =========================
    START SERVER
 ========================= */
-app.listen(5000, () => {
-  console.log("🚀 Server running on port 5000");
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
 });
