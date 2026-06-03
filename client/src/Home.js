@@ -65,7 +65,7 @@ function Home() {
         // Read the actual text content of the uploaded file
         const fileContent = await file.text();
 
-        const response = await fetch("http://127.0.0.1:5000/save-report", {
+        const response = await fetch("https://forensix-zvdl.onrender.com/save-report", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
