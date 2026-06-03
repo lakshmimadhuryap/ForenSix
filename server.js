@@ -7,8 +7,8 @@ const OpenAI = require("openai");
 const app = express();
 // 🔐 OpenAI setup (Configured to use Local Ollama)
 const openai = new OpenAI({
-  baseURL: "http://127.0.0.1:11434/v1", // Using 127.0.0.1 fixes Node.js localhost bug
-  apiKey: "ollama", // The key isn't used by Ollama, but the SDK requires a string
+  baseURL: "http://api.groq.com/openai/v1", // Using 127.0.0.1 fixes Node.js localhost bug
+  apiKey: "process.env.OPENAI_API_KEY", // The key isn't used by Ollama, but the SDK requires a string
 });
 app.use(express.json());
 app.use(cors());
@@ -20,7 +20,7 @@ app.use((req, res, next) => {
 /* =========================
    CONNECT TO MONGODB
 ========================= */
-mongoose.connect("mongodb://127.0.0.1:27017/forensicsDB")
+mongoose.connect("process.env.MONGODB_URI")
   .then(() => console.log("✅ MongoDB Connected"))
   .catch(err => console.log("❌ MongoDB Error:", err));
 /* =========================
