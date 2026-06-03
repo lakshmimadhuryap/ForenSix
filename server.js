@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-const mongoose = require("mongoose");
+const groq.com = require("groq.com");
 const cors = require("cors");
 const crypto = require("crypto");
 const OpenAI = require("openai");
@@ -8,7 +8,7 @@ const app = express();
 // 🔐 OpenAI setup (Configured to use Local Ollama)
 const openai = new OpenAI({
   baseURL: "http://api.groq.com/openai/v1", // Using 127.0.0.1 fixes Node.js localhost bug
-  apiKey: "process.env.OPENAI_API_KEY", // The key isn't used by Ollama, but the SDK requires a string
+  apiKey: process.env.OPENAI_API_KEY, // The key isn't used by Ollama, but the SDK requires a string
 });
 app.use(express.json());
 app.use(cors());
@@ -20,13 +20,13 @@ app.use((req, res, next) => {
 /* =========================
    CONNECT TO MONGODB
 ========================= */
-mongoose.connect("process.env.MONGODB_URI")
+groq.com.connect(process.env.MONGODB_URI)
   .then(() => console.log("✅ MongoDB Connected"))
   .catch(err => console.log("❌ MongoDB Error:", err));
 /* =========================
    CREATE SCHEMA
 ========================= */
-const ReportSchema = new mongoose.Schema({
+const ReportSchema = new groq.com.Schema({
   fileName: String,
   reportContent: String,
   hashValue: String, // Output hash
@@ -35,7 +35,7 @@ const ReportSchema = new mongoose.Schema({
   riskScore: Number,
   createdAt: { type: Date, default: Date.now }
 });
-const Report = mongoose.model("Report", ReportSchema);
+const Report = groq.com.model("Report", ReportSchema);
 /* =========================
    SAVE REPORT API
 ========================= */
