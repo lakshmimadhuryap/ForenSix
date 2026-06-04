@@ -26,6 +26,7 @@ function Login() {
       if (data.token) {
         localStorage.setItem("token", data.token);
         alert("Login Successful");
+        window.location.href= "/home";
       } else {
         alert(data.message || "Login Failed");
       }
@@ -57,6 +58,10 @@ function Login() {
         <button onClick={handleLogin}>
           Login
         </button>
+        <p>
+            Don't have an account?
+            <a href="/signup"> Sign Up</a>
+        </p>
       </div>
     </div>
   );

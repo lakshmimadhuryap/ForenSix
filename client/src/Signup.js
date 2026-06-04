@@ -25,6 +25,7 @@ function Signup() {
 
       const data = await res.json();
       alert(data.message || "Signup Successful");
+      Window.location.href = "/login";
     } catch (err) {
       alert("Signup Failed");
       console.log(err);

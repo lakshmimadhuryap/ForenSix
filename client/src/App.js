@@ -11,7 +11,7 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Login />} />
         <Route path="/report" element={<Report />} /> {/* ✅ FIXED */}
         <Route path="/history" element={<History />} />
         <Route path="/login" element={<Login />} />
