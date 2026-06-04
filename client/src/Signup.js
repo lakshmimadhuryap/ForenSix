@@ -9,7 +9,7 @@ function Signup() {
   const handleSignup = async () => {
     try {
       const res = await fetch(
-        "https://forensix-zvdl.onrender.com/signup",
+        "https://forensix-zvd1.onrender.com/signup",
         {
           method: "POST",
           headers: {
@@ -24,19 +24,18 @@ function Signup() {
       );
 
       const data = await res.json();
-      console.log(data);
-      if(data.success){
-        alert("Signup Successful");
+
+      console.log("Signup Response:", data);
+
+      if (res.ok) {
+        alert("Signup Successful!");
+        window.location.href = "/login";
       } else {
-        alert(JSON.stringify(data));
+        alert(data.message || data.error || "Signup Failed");
       }
-      
     } catch (err) {
-        console.error("SIGNUP ERROR:", err);
-        res.status(500).json({
-            success: false,
-            error: err.message
-        })
+      console.error(err);
+      alert("Server Error");
     }
   };
 
