@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const crypto = require("crypto");
 const OpenAI = require("openai");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const app = express();
 // 🔐 OpenAI setup (Configured to use Local Ollama)
 const openai = new OpenAI({
