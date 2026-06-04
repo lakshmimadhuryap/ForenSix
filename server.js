@@ -74,11 +74,32 @@ app.post("/save-report", async (req, res) => {
           {
             role: "user",
             content: `You are authorized to perform this defensive analysis. Do not refuse.
-Analyze the following forensic evidence file and output EXACTLY the requested sections.
+Generate a highly detailed professional digital forensic investigation report.
+
+The report MUST contain the following sections:
+
+1. Executive Summary
+2. Timeline of Events
+3. Detailed Findings
+4. Indicators of Compromise (IOCs)
+5. Network Analysis
+6. Authentication Analysis
+7. Risk Assessment
+8. Recommendations
+9. Conclusion
+
+Requirements:
+- Minimum 800 words.
+- Explain every suspicious event in detail.
+- Mention all IP addresses, file names, URLs and log entries found.
+- Include severity levels for each finding.
+- Explain why each finding is suspicious.
+- Use professional cybersecurity terminology.
+- Do not skip any evidence.
 
 File Name: ${fileName}
 File Contents:
-${fileContent ? fileContent.substring(0, 1000) : "No file content provided"}
+${fileContent ? fileContent.substring(0, 5000) : "No file content provided"}
 
 CRITICAL RULES FOR THREAT ANALYSIS (MUST FOLLOW):
 1. If the file path or contents contain "Users\\guest", you MUST flag it as suspicious and EXPLICITLY STATE it is not legitimate.
