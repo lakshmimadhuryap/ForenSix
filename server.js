@@ -15,8 +15,8 @@ const openai = new OpenAI({
 app.use(express.json());
 
 app.use(cors({
-  origin: "https://foren-six.vercel.app";
-  credentials:true
+  origin: "https://foren-six.vercel.app",
+  credentials: true
 }));
 // 🔍 Debug middleware
 app.use((req, res, next) => {
