@@ -111,7 +111,13 @@ CRITICAL RULES FOR THREAT ANALYSIS (MUST FOLLOW):
 Return your response EXACTLY using these headers. Do NOT use JSON.
 
 [SUMMARY]
-Write a detailed 3-4 sentence summary of the file and any suspicious activity.
+EXECUTIVE SUMMARY REQUIREMENTS:
+- Write 2-4 detailed paragraphs.
+- Minimum 250-400 words.
+- Summarize all important evidence found.
+- Mention suspicious files, network connections, browser activity, authentication events, and security events.
+- Explain the overall attack scenario.
+- Include a final risk assessment statement.
 
 [FINDINGS]
 Write detailed findings explaining exactly what the log shows, with evidence.
