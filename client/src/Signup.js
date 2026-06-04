@@ -24,11 +24,19 @@ function Signup() {
       );
 
       const data = await res.json();
-      alert(data.message || "Signup Successful");
-      Window.location.href = "/login";
+      console.log(data);
+      if(data.success){
+        alert("Signup Successful");
+      } else {
+        alert(JSON.stringify(data));
+      }
+      
     } catch (err) {
-      alert("Signup Failed");
-      console.log(err);
+        console.error("SIGNUP ERROR:", err);
+        res.status(500).json({
+            success: false,
+            error: err.message
+        })
     }
   };
 
