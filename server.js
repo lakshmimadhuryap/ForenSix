@@ -13,6 +13,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY, // The key isn't used by Ollama, but the SDK requires a string
 });
 app.use(express.json());
+
 app.use(cors());
 // 🔍 Debug middleware
 app.use((req, res, next) => {
@@ -38,8 +39,8 @@ const ReportSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now }
 });
 const Report = mongoose.model("Report", ReportSchema);
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+
+
 const UserSchema = new mongoose.Schema({
   name: String,
   email: {
