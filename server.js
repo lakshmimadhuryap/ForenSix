@@ -68,7 +68,8 @@ app.post("/signup", async (req, res) => {
 
     res.json({ success: true, user });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+      console.log("SIGNUP ERROR:", err);
+      res.status(500).json({ error: err.message });
   }
 });
 
